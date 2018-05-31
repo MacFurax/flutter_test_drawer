@@ -9,9 +9,33 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       home: Scaffold(
       appBar: AppBar(
-        title: Text("Test Drawer"),
+        title: Text("Erratic Master Remote"),
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              child: Text("Erratic Master Remote"),
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder_open),
+              title: const Text('Status'),
+              onTap: (){
+                print('Click on Status');
+              }
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder_open),
+              title: const Text("Cues"),
+            ),
+            ListTile(
+              leading: const Icon(Icons.folder_open),
+              title: const Text("Experiences"),
+            ),
+            AboutListTile(),
+          ]
+        ),
+      ),
     )
     );
 
