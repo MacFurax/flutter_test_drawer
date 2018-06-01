@@ -15,15 +15,16 @@ class MyDrawer extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Text('Erratic Master Remote', style: TextStyle(fontSize: 26.0)),
-                      Text('Alterface-Projects', style: TextStyle(fontSize: 12.0)),
                       new IconButton(
-                      icon: new Icon(Icons.settings),
+                        icon: new Icon(Icons.settings),
+                        alignment:  Alignment.bottomLeft,
                         onPressed: (){
                           Navigator.of(context).pop();
                           Navigator.of(context).pushNamed("/settings");
                           print('got to settings page');
                         }),
+                      Text('Erratic Master Remote', style: TextStyle(fontSize: 26.0)),
+                      Text('Alterface-Projects', style: TextStyle(fontSize: 12.0)),
                     ],
                   ),
                 ),

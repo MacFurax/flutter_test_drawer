@@ -10,10 +10,10 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  HomePage home = new HomePage();
-  ShowControlPage showControl = new ShowControlPage();
-  RideSystemPage rideSystem = new RideSystemPage();
-  SettingsPage settingsPage = new SettingsPage();
+  final HomePage home = new HomePage();
+  final ShowControlPage showControl = new ShowControlPage();
+  final RideSystemPage rideSystem = new RideSystemPage();
+  final SettingsPage settingsPage = new SettingsPage();
 
   @override
   Widget build(BuildContext context) {
