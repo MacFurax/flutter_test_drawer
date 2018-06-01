@@ -33,12 +33,15 @@ class SettingsPage extends StatelessWidget{
                     ),
                     initialValue: "44669",
                   ),
-                  new MaterialButton(
-                    child: new Text('Test'),
-                    elevation: 2.0,
-                    onPressed: (){
-
-                    },
+                  new Container(
+                    alignment: Alignment.bottomLeft,
+                    padding: EdgeInsets.only( top:20.0, ),
+                    child: RaisedButton(
+                      child: new Text('Test', style: new TextStyle( fontSize: 22.0),),
+                      onPressed: (){
+                        print('Test connection to server');
+                      },
+                    ),
                   ),
                 ],
               ),

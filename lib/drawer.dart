@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget{
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new Text('Erratic Master Remote', style: TextStyle(fontSize: 26.0)),
-                      new Text('Alterface-Projects', style: TextStyle(fontSize: 12.0)),
+                      new Text('Alterface-Projects', style: TextStyle(fontSize: 18.0)),
                     ],
                   ),
                 ),

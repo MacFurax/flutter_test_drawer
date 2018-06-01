@@ -12,8 +12,36 @@ class HomePage extends StatelessWidget{
       ),
      drawer: new MyDrawer(),
      body: new Container(
-        child: new Center(
-          child: new Text('Erratic Master Status Overview'),
+       padding: EdgeInsets.all(10.0),
+        child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                new Text('Erratic Server Status', style: new TextStyle(fontSize: 22.0),),
+                new Icon( Icons.check_circle, color: Colors.green, size: 36.0,),
+              ],
+            ),
+            new Divider(),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                new Text('Ride System Status', style: new TextStyle(fontSize: 22.0),),
+                new Icon( Icons.check_circle, color: Colors.green, size: 36.0,),
+              ],
+            ),
+            new Divider(),
+            new Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                new Text('Show Control Status', style: new TextStyle(fontSize: 22.0),),
+                new Icon( Icons.check_circle, color: Colors.green, size: 36.0,),
+              ],
+            ),
+            new Divider(),
+          ],
         ),
        ),
      );
