@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:test_drawer/drawer.dart';
 import 'package:test_drawer/showControl.dart';
 import 'package:test_drawer/rideSystemPage.dart';
 import 'package:test_drawer/settingsPage.dart';
+import 'package:test_drawer/homePage.dart';
 
 void main() => runApp(new MyApp());
 
@@ -34,21 +34,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget{
-  @override
-  Widget build( BuildContext context)
-  {
-   return new Scaffold(
-     appBar: new AppBar(
-        title: new Text('Erratic Master Remote'),
-        elevation: 0.0,
-      ),
-     drawer: new MyDrawer(),
-     body: new Container(
-       child: new Center(
-         child: new Text("Home Page"),
-       ),
-     ),
-   ) ;
-  }
-}
