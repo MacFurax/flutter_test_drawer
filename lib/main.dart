@@ -9,13 +9,35 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       home: Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon( Icons.settings),
+            onPressed: (){
+              print('Cick on settings');
+            },
+            ),
+        ],
+        backgroundColor: Colors.deepOrange,
         title: Text("Erratic Master Remote"),
       ),
-      drawer: Drawer(
+      drawer: Container(
+        color: Colors.orange[600],
+        child:Drawer(
         child: ListView(
           children: <Widget>[
-            DrawerHeader(
-              child: Text("Erratic Master Remote"),
+              Container(
+                color: Colors.deepOrange,
+                child:DrawerHeader(
+                child: Column(
+                  children: <Widget>[
+                    Text("Erratic Master Remote", 
+                    style: TextStyle(fontSize: 25.4),
+                    textAlign: TextAlign.right,
+                    ),
+                    Text("Alterface-Projects"),
+                  ],
+                  ),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.folder_open),
@@ -27,14 +49,21 @@ class MyApp extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.folder_open),
               title: const Text("Cues"),
+              onTap: (){
+                print('Click on Cues');
+              },
             ),
             ListTile(
               leading: const Icon(Icons.folder_open),
               title: const Text("Experiences"),
+              onTap: (){
+                print('Click on Experiences');
+              },
             ),
             AboutListTile(),
           ]
         ),
+      ),
       ),
     )
     );
