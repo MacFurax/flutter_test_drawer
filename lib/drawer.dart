@@ -17,6 +17,13 @@ class MyDrawer extends StatelessWidget{
                     children: <Widget>[
                       Text('Erratic Master Remote', style: TextStyle(fontSize: 26.0)),
                       Text('Alterface-Projects', style: TextStyle(fontSize: 12.0)),
+                      new IconButton(
+                      icon: new Icon(Icons.settings),
+                        onPressed: (){
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed("/settings");
+                          print('got to settings page');
+                        }),
                     ],
                   ),
                 ),
@@ -27,6 +34,8 @@ class MyDrawer extends StatelessWidget{
              leading: new Icon(Icons.settings_input_antenna),
              onTap: (){
                print('Show Status page');
+               Navigator.of(context).pop();
+               Navigator.of(context).pushNamed("/main");
              },
            ),
            new ListTile(
@@ -34,6 +43,17 @@ class MyDrawer extends StatelessWidget{
              leading: new Icon(Icons.settings_input_svideo),
              onTap: (){
                print('Show Show control page');
+               Navigator.of(context).pop();
+               Navigator.of(context).pushNamed("/showControl");
+             },
+           ),
+           new ListTile(
+             title: new Text('Ride System'),
+             leading: new Icon(Icons.airline_seat_recline_normal),
+             onTap: (){
+               print('Show Show control page');
+               Navigator.of(context).pop();
+               Navigator.of(context).pushNamed("/rideSystem");
              },
            ),
            new ListTile(
