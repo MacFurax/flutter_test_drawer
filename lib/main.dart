@@ -7,38 +7,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: Scaffold(
-      appBar: AppBar(
-        title: Text("Erratic Master Remote"),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              child: Text("Erratic Master Remote"),
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder_open),
-              title: const Text('Status'),
-              onTap: (){
-                print('Click on Status');
-              }
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder_open),
-              title: const Text("Cues"),
-            ),
-            ListTile(
-              leading: const Icon(Icons.folder_open),
-              title: const Text("Experiences"),
-            ),
-            AboutListTile(),
-          ]
-        ),
-      ),
-    )
+      theme: new ThemeData(primarySwatch: Colors.orange),
+      home: new HomePage(),
     );
 
   }
 }
 
+class HomePage extends StatelessWidget{
+  @override
+  Widget build( BuildContext context)
+  {
+   return new Scaffold(
+     appBar: new AppBar(
+      title: new Text('Erratic Master Remote'),
+      elevation: 0.0,
+     ),
+   ) ;
+  }
+}
