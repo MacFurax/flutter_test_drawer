@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'remoteAPI.dart';
 
-class SettingsPage extends StatelessWidget{
+class SettingsPage extends StatefulWidget{
+  SettingsPage({Key key, this.api}): super(key: key);
+
+  final RemoteApi api;
+
+  @override
+  _SettingsPage createState() => new _SettingsPage();
+}
+
+class _SettingsPage extends State<SettingsPage> {
   @override
   Widget build( BuildContext context){
     return new Scaffold(
@@ -22,7 +32,7 @@ class SettingsPage extends StatelessWidget{
                       labelText: 'Erratic Master IP',
                       labelStyle: new TextStyle(fontSize: 23.0),
                     ),
-                    initialValue: "10.0.0.127",
+                    initialValue: "127.0.0.1",
                   ),
                   new TextFormField(
                     keyboardType: TextInputType.number,
