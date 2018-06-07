@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_drawer/remoteAPI.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget{
   //SettingsPage( {Key key }): super(key: key);
@@ -12,22 +13,44 @@ class SettingsPage extends StatefulWidget{
 class _SettingsPage extends State<SettingsPage> {
 
   //final RemoteApi api;
+  var prefs;
+  Widget content;
   TextEditingController IPController = new TextEditingController();
   TextEditingController PortController = new TextEditingController();
 
   _SettingsPage(){
-    IPController.text = '127.0.0.1';
-    IPController.addListener((){
-      print('IP adresse modified value = ' + IPController.text);
-    });
-    PortController.text = '696969';
+    content = new Text("Loading data...");
+
+    _getData();
+  
   }
 
 
   String _testConnectionStatus = 'Not yet Tested';
-   RemoteApi api;
+  RemoteApi api;
 
+  void _getData() async
+  {
+    prefs = await SharedPreferences.getInstance();
 
+    var strIP = prefs.getString('ErraticMasterIP');
+    if( strIP == null)
+    {
+      IPController.text = '127.0.0.1';
+      await prefs.setString('ErraticMasterIP', '127.0.0.1');
+    }
+
+    var strPort = prefs.getString('ErraticMasterPort');
+    if( strPort == null)
+    {
+      PortController.text = '6969';
+      await prefs.setString('ErraticMasterPort', '6969');
+    }
+    setState((){
+      content = new Text("Data loaded");
+    });
+    
+  }
 
   void _requestStatus() async {
     setState((){
@@ -68,6 +91,10 @@ class _SettingsPage extends State<SettingsPage> {
               ),
               child: new Column(
                 children: <Widget>[
+                  new Container(
+                    padding: EdgeInsets.all(10.0),
+                    child :content,
+                  ),
                   new TextFormField(
                     controller: IPController,
                     keyboardType: TextInputType.number,
