@@ -7,6 +7,14 @@ class ShowControlPage extends StatelessWidget{
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Show Control'),
+          actions: <Widget>[
+            new IconButton(
+              icon: new Icon(Icons.refresh),
+              onPressed: (){
+                print('Refresh list');
+              },
+            ),
+          ],
         ),
         drawer: new MyDrawer(),
         body: new Container(
