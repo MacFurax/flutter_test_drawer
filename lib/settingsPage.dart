@@ -4,13 +4,26 @@ import 'package:test_drawer/remoteAPI.dart';
 class SettingsPage extends StatefulWidget{
   SettingsPage(RemoteApi  remApi, {Key key }): super(key: key);
 
- 
+  final RemoteApi api;
 
   @override
   _SettingsPage createState() => new _SettingsPage();
 }
 
 class _SettingsPage extends State<SettingsPage> {
+
+  //final RemoteApi api;
+  TextEditingController IPController = new TextEditingController();
+  TextEditingController PortController = new TextEditingController();
+
+  _SettingsPage(){
+    IPController.text = '127.0.0.1';
+    IPController.addListener((){
+      print('IP adresse modified value = ' + IPController.text);
+    });
+    PortController.text = '696969';
+  }
+
 
   String _testConnectionStatus = 'Not yet Tested';
    RemoteApi api;
@@ -57,22 +70,22 @@ class _SettingsPage extends State<SettingsPage> {
               child: new Column(
                 children: <Widget>[
                   new TextFormField(
+                    controller: IPController,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(fontSize: 22.0, color: Colors.black),
                     decoration:  new InputDecoration(
                       labelText: 'Erratic Master IP',
                       labelStyle: new TextStyle(fontSize: 23.0),
                     ),
-                    initialValue: "127.0.0.1",
                   ),
                   new TextFormField(
+                    controller: PortController,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(fontSize: 22.0, color: Colors.black),
                     decoration:  new InputDecoration(
                       labelText: 'Erratic Master Port',
                       labelStyle: new TextStyle(fontSize: 23.0),
                     ),
-                    initialValue: "44669",
                   ),
                   new Container(
                     alignment: Alignment.bottomLeft,
@@ -83,6 +96,9 @@ class _SettingsPage extends State<SettingsPage> {
                           child: new Text('Test', style: new TextStyle( fontSize: 22.0),),
                           onPressed: (){
                             _requestStatus();
+                            print('Test connection to server IP '+
+                            IPController.text + 
+                            ' port ' + PortController.text);
                             //print('Test connection to server');
                           },
                         ),
