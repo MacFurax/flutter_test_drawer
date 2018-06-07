@@ -11,8 +11,6 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  final RemoteApi remApi = new RemoteApi();
-
   final HomePage home = new HomePage();
   final ShowControlPage showControl = new ShowControlPage();
   final RideSystemPage rideSystem = new RideSystemPage();

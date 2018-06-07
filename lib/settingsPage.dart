@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:test_drawer/remoteAPI.dart';
 
 class SettingsPage extends StatefulWidget{
-  SettingsPage(RemoteApi  remApi, {Key key }): super(key: key);
+  //SettingsPage( {Key key }): super(key: key);
 
-  final RemoteApi api;
-
+  
   @override
   _SettingsPage createState() => new _SettingsPage();
 }
