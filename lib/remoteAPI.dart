@@ -1,7 +1,10 @@
+library remote_api;
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+final remoteApi = new RemoteApi._private();
 
 class Status{
   final bool erraticMasterStatus;
@@ -41,6 +44,8 @@ class RemoteApi{
   final HttpClient httpClient = HttpClient();
   final url = '127.0.0.1:6969';
 
+  RemoteApi._private();
+
   Future<String> getStatus() async {
     
     final uri = Uri.http(url,"/status");
@@ -55,6 +60,22 @@ class RemoteApi{
     final responseBody = httpResponse.transform(utf8.decoder).join();
 
     return responseBody;
+  }
+
+  Future<bool> testService() async
+  {
+    final uri = Uri.http(url,"/test");
+    
+    final httpRequest = await httpClient.getUrl(uri);
+    final httpResponse = await httpRequest.close();
+
+    if( httpResponse.statusCode != HttpStatus.OK){
+      return null;
+    }
+
+    String responseBody = await httpResponse.transform(utf8.decoder).join();
+
+    return ( responseBody == 'ErraticMaster:OK');
   }
 
   List<Cue> parseCues(String responseBody){

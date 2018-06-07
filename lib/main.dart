@@ -4,11 +4,14 @@ import 'package:test_drawer/showControl.dart';
 import 'package:test_drawer/rideSystemPage.dart';
 import 'package:test_drawer/settingsPage.dart';
 import 'package:test_drawer/homePage.dart';
+import 'package:test_drawer/remoteAPI.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  final RemoteApi remApi = new RemoteApi();
 
   final HomePage home = new HomePage();
   final ShowControlPage showControl = new ShowControlPage();
