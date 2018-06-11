@@ -1,6 +1,9 @@
 
+
 library model;
 
+import 'package:test_drawer/remoteAPI.dart';
+import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Model model = new Model();
@@ -15,7 +18,8 @@ class Model
 
   SharedPreferences  storage;
 
-  void load() async
+  // Load data from SharedPreferences
+  Future<void> load() async
   {
     storage = await SharedPreferences.getInstance();
     ip = storage.getString('ErraticMasterIP');
@@ -34,6 +38,7 @@ class Model
     loaded = true;
   }
 
+  // save model
   void save() async 
   {
     await storage.setString('ErraticMasterIP', ip);

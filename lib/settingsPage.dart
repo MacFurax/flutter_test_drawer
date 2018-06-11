@@ -42,7 +42,6 @@ class _SettingsPage extends State<SettingsPage> {
   _SettingsPage(){
     content = new Text("Loading data...");
     _getData();
-  
   }
 
   String _testConnectionStatus = 'Not yet Tested';

@@ -13,37 +13,33 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  final HomePage home = new HomePage();
-  final ShowControlPage showControl = new ShowControlPage();
-  final RideSystemPage rideSystem = new RideSystemPage();
-  final SettingsPage settingsPage = new SettingsPage();
-  final TapCuePage tapCuePage = new TapCuePage();
-
   MyApp()
   {
-    loadModel();    
+        
   }
 
   void loadModel() async
   {
     await model.load();
     print('IP is ' + model.ip);
+    print('Port is ' + model.port);
   }
 
   @override
   Widget build(BuildContext context) {
+    loadModel();
     return new MaterialApp(
       theme: new ThemeData(
         primarySwatch: Colors.orange,
         splashColor: Colors.orange[900],
         highlightColor: Colors.orange[200]),
-      home: home,
+      home: new HomePage(),
       routes: <String, WidgetBuilder>{
-        "/main":(BuildContext context)=> home,
-        "/showControl":(BuildContext context)  => showControl,
-        "/rideSystem":(BuildContext context)  => rideSystem,
-        "/settings":(BuildContext context) => settingsPage,
-        "/tapCue":(BuildContext context) => tapCuePage,
+        "/main":(BuildContext context)=> new HomePage(),
+        "/showControl":(BuildContext context)  => new ShowControlPage(),
+        "/rideSystem":(BuildContext context)  => new RideSystemPage(),
+        "/settings":(BuildContext context) => new SettingsPage(),
+        "/tapCue":(BuildContext context) => new TapCuePage(),
       }
     );
 

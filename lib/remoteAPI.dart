@@ -6,16 +6,16 @@ import 'dart:io';
 
 final RemoteApi remoteApi = new RemoteApi._private();
 
-class Status{
+class ErraticMasterStatus{
   final bool erraticMasterStatus;
   final bool showControlStatus;
   final bool rideSystemStatus;
 
-  Status({this.erraticMasterStatus, this.rideSystemStatus, this.showControlStatus});
+  ErraticMasterStatus({this.erraticMasterStatus, this.rideSystemStatus, this.showControlStatus});
 
-  factory Status.fromJson( Map<String, dynamic> json )
+  factory ErraticMasterStatus.fromJson( Map<String, dynamic> json )
   {
-    return new Status(
+    return new ErraticMasterStatus(
       erraticMasterStatus: json['erraticMasterStatus'],
       showControlStatus: json['showControlStatus'],
       rideSystemStatus: json['rideSystemStatus'],
@@ -43,11 +43,11 @@ class Cue{
 class RemoteApi{
   HttpClient httpClient = HttpClient();
   String url = '127.0.0.1';
-  String port = '0';
+  String port = '6969';
 
   RemoteApi._private();
 
-  Future<String> getStatus() async {
+  Future<ErraticMasterStatus> getStatus() async {
     
     final uri = Uri.http(url+':'+port,"/status");
     
@@ -58,9 +58,10 @@ class RemoteApi{
       return null;
     }
 
-    final responseBody = httpResponse.transform(utf8.decoder).join();
+    final responseBody = await httpResponse.transform(utf8.decoder).join();
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
-    return responseBody;
+    return ErraticMasterStatus.fromJson( parsed );
   }
 
   Future<bool> testService() async
