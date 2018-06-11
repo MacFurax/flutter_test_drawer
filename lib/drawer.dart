@@ -49,6 +49,15 @@ class MyDrawer extends StatelessWidget{
                Navigator.of(context).pushNamed("/rideSystem");
              },
            ),
+            new ListTile(
+             title: new Text('Tap Cue'),
+             leading: new Icon(Icons.location_on),
+             onTap: (){
+               print('Show Show Tap Cue page');
+               Navigator.of(context).pop();
+               Navigator.of(context).pushNamed("/tapCue");
+             },
+           ),
            new ListTile(
              title: new Text('Settings'),
              leading: new Icon(Icons.settings),

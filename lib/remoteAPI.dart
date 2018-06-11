@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-final remoteApi = new RemoteApi._private();
+final RemoteApi remoteApi = new RemoteApi._private();
 
 class Status{
   final bool erraticMasterStatus;
@@ -41,14 +41,15 @@ class Cue{
 }
 
 class RemoteApi{
-  final HttpClient httpClient = HttpClient();
-  final url = '127.0.0.1:6969';
+  HttpClient httpClient = HttpClient();
+  String url = '127.0.0.1';
+  String port = '0';
 
   RemoteApi._private();
 
   Future<String> getStatus() async {
     
-    final uri = Uri.http(url,"/status");
+    final uri = Uri.http(url+':'+port,"/status");
     
     final httpRequest = await httpClient.getUrl(uri);
     final httpResponse = await httpRequest.close();
@@ -64,7 +65,7 @@ class RemoteApi{
 
   Future<bool> testService() async
   {
-    final uri = Uri.http(url,"/test");
+    final uri = Uri.http(url+':'+port,"/test");
     
     final httpRequest = await httpClient.getUrl(uri);
     final httpResponse = await httpRequest.close();
@@ -86,7 +87,7 @@ class RemoteApi{
 
   Future<List<Cue>> fetchShowControlCues() async {
     
-    final uri = Uri.http(url,"/showControl/cues");
+    final uri = Uri.http(url+':'+port,"/showControl/cues");
     
     final httpRequest = await httpClient.getUrl(uri);
     final httpResponse = await httpRequest.close();
