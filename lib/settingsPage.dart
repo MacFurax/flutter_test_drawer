@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_drawer/remoteAPI.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_drawer/model.dart';
 
 class SettingsPage extends StatefulWidget{
-  //SettingsPage( {Key key }): super(key: key);
-
   
   @override
   _SettingsPage createState() => new _SettingsPage();
@@ -13,43 +11,60 @@ class SettingsPage extends StatefulWidget{
 class _SettingsPage extends State<SettingsPage> {
 
   //final RemoteApi api;
-  var prefs;
   Widget content;
-  TextEditingController IPController = new TextEditingController();
-  TextEditingController PortController = new TextEditingController();
+  final TextEditingController ipController = new TextEditingController();
+  final TextEditingController portController = new TextEditingController();
+  
+  @override
+  void initState()
+  {
+    super.initState();
+
+    ipController.addListener( _updateIp );
+    portController.addListener( _updatePort );
+
+  }
+
+  @override
+  void dispose()
+  {
+    ipController.removeListener(_updateIp );
+    portController.removeListener(_updatePort);
+
+    ipController.dispose();
+    portController.dispose();
+
+    super.dispose();
+  }
+
+  
 
   _SettingsPage(){
     content = new Text("Loading data...");
-
     _getData();
   
   }
 
-
   String _testConnectionStatus = 'Not yet Tested';
-  RemoteApi api;
 
-  void _getData() async
+  void _updateIp()
   {
-    prefs = await SharedPreferences.getInstance();
+    model.ip = ipController.text;
+    model.save();
+  }
 
-    var strIP = prefs.getString('ErraticMasterIP');
-    if( strIP == null)
-    {
-      IPController.text = '127.0.0.1';
-      await prefs.setString('ErraticMasterIP', '127.0.0.1');
-    }
+  void _updatePort()
+  {
+    model.port = portController.text;
+    model.save();
+  }
 
-    var strPort = prefs.getString('ErraticMasterPort');
-    if( strPort == null)
-    {
-      PortController.text = '6969';
-      await prefs.setString('ErraticMasterPort', '6969');
-    }
-    setState((){
-      content = new Text("Data loaded");
-    });
-    
+  void _getData()
+  {
+    ipController.text = model.ip;
+    portController.text = model.port;
+  
+    content = new Text("Data loaded");
   }
 
   void _requestStatus() async {
@@ -59,6 +74,9 @@ class _SettingsPage extends State<SettingsPage> {
     try {
       //var api = new RemoteApi();
       
+      remoteApi.url = model.ip;
+      remoteApi.port = model.port;
+
       bool ret = await remoteApi.testService();
 
       setState(() {
@@ -96,7 +114,7 @@ class _SettingsPage extends State<SettingsPage> {
                     child :content,
                   ),
                   new TextFormField(
-                    controller: IPController,
+                    controller: ipController,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(fontSize: 22.0, color: Colors.black),
                     decoration:  new InputDecoration(
@@ -105,7 +123,7 @@ class _SettingsPage extends State<SettingsPage> {
                     ),
                   ),
                   new TextFormField(
-                    controller: PortController,
+                    controller: portController,
                     keyboardType: TextInputType.number,
                     style: new TextStyle(fontSize: 22.0, color: Colors.black),
                     decoration:  new InputDecoration(
@@ -123,8 +141,8 @@ class _SettingsPage extends State<SettingsPage> {
                           onPressed: (){
                             _requestStatus();
                             print('Test connection to server IP '+
-                            IPController.text + 
-                            ' port ' + PortController.text);
+                            ipController.text + 
+                            ' port ' + portController.text);
                             //print('Test connection to server');
                           },
                         ),

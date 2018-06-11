@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_drawer/drawer.dart';
-import 'model.dart';
-import 'remoteAPI.dart';
+import 'package:test_drawer/model.dart';
+import 'package:test_drawer/remoteAPI.dart';
 
 
 class HomePage extends StatelessWidget{

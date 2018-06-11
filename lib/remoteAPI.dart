@@ -101,4 +101,13 @@ class RemoteApi{
     return parseCues(responseBody);
   }
 
+  void insertCue() async {
+
+    final uri = Uri.http(url+':'+port,"/showControl/insertCue");
+
+    final httpRequest = await httpClient.getUrl(uri);
+    final httpResponse = await httpRequest.close();     
+  
+  }
+
 }

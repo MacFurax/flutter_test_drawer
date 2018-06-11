@@ -1,7 +1,6 @@
 
 library model;
 
-import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Model model = new Model();
@@ -16,7 +15,7 @@ class Model
 
   SharedPreferences  storage;
 
-  Future<void> load() async
+  void load() async
   {
     storage = await SharedPreferences.getInstance();
     ip = storage.getString('ErraticMasterIP');
@@ -37,8 +36,7 @@ class Model
 
   void save() async 
   {
-    await storage.setString('ErraticMasterIP', '127.0.0.1');
-    await storage.setString('ErraticMasterPort', '6969');
-
+    await storage.setString('ErraticMasterIP', ip);
+    await storage.setString('ErraticMasterPort', port);
   }
 }
